@@ -1,0 +1,33 @@
+- name: Install Network Time Protocol(NTP) in Ubuntu
+  apt:
+    name:
+      - chrony
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: "NTP service restart/enable"
+  service:
+    name: chrony
+    state: restarted
+    enabled: true
+
+- name: Install OpenStack package (Client) in Ubuntu
+  apt:
+    name:
+      - python3-openstackclient
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Memcached in Ubuntu
+  apt:
+    name:
+      - memcached
+      - python3-memcache
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: "Memcached service restart/enable"
+  service:
+    name: memcached
+    state: restarted
+    enabled: true

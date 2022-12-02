@@ -1,0 +1,32 @@
+- name: Install Network Time Protocol(NTP) in CentOS
+  yum:
+    name:
+      - chrony
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: "NTP service restart/enable"
+  service:
+    name: chronyd
+    state: restarted
+    enabled: true
+
+- name: Install OpenStack package (Client) in CentOS
+  yum:
+    name:
+      - python-openstackclient
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: Install etcd in CentOS
+  yum:
+    name:
+      - etcd
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: "etcd service restart/enable"
+  service:
+    name: etcd
+    state: restarted
+    enabled: true
